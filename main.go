@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"first-go-server/chat"
-	chatUser "first-go-server/chatUser"
 	"fmt"
 	"net/http"
 	"time"
@@ -37,7 +36,7 @@ func main() {
 
 func createChat(w http.ResponseWriter, r *http.Request) {
 	// chatQueue 에 추가
-	user := chatUser.FindOrCreateUser(r.RemoteAddr)
+	user := chat.FindOrCreateUser(r.RemoteAddr)
 	now := time.Now().Unix()
 	if user.LastChatAt+1 > now {
 		w.WriteHeader(http.StatusBadRequest)
@@ -52,7 +51,7 @@ func createChat(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	chatUser.UpdateLastChatAt(r.RemoteAddr, now)
+	chat.UpdateLastChatAt(r.RemoteAddr, now)
 	chat.CreateChat(user, req.Message)
 
 	w.WriteHeader(http.StatusCreated)

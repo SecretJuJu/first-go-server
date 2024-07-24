@@ -1,4 +1,4 @@
-package chatUser
+package chat
 
 type User struct {
 	Ip         string `json:"ip"`

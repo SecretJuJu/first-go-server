@@ -1,7 +1,6 @@
 package chat
 
 import (
-	"first-go-server/chatUser"
 	"time"
 )
 
@@ -14,7 +13,7 @@ type Chat struct {
 
 var Queue = make([]Chat, 0)
 
-func CreateChat(user chatUser.User, message string) {
+func CreateChat(user User, message string) {
 	// 채팅 메시지 생성
 	// chatQueue 에 추가
 
