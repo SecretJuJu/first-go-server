@@ -1,6 +1,7 @@
 package chat
 
 import (
+	"fmt"
 	"time"
 )
 
@@ -33,9 +34,9 @@ func GetChats() []Chat {
 }
 
 func MaintainChats() {
-	// 3초마다 오래된 채팅 메시지를 삭제하는 함수
 	for {
 		time.Sleep(3 * time.Second)
+		fmt.Println("Cleaning up old chats")
 		now := time.Now().Unix()
 		for i, chat := range Queue {
 			if chat.CreatedAt+10 < now {
